@@ -1,7 +1,6 @@
 nav {
     background: green;
     padding: 0 2% 0 2%;
-    text-align: right;
   }
   
   nav a {
@@ -16,10 +15,11 @@ nav {
     font-weight: 800;
   }
   
-  nav li {
-    display: inline-block;
+  nav ul {
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
     margin: 20px;
-    width: 100px;
   }
   
   nav ul {
