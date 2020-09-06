@@ -8,6 +8,7 @@ import SignUpForm from "./components/SignUpForm/SignUpForm";
 import LogInForm from "./components/LogInForm/LogInForm";
 import LogOut from "./components/LogOut/LogOut";
 import './App.css';
+import { queryHelpers } from '@testing-library/react';
 
 const App = () => {
   const [state, setState] = useState({
@@ -119,6 +120,10 @@ const App = () => {
           <p>
             Welcome to our Project #3
           </p>
+          <form action="/" method="POST">
+            Name: <input type="text" name="name" />
+            <input type="submit" name="" value="Create New Playlist"/>
+          </form>
         </div>
       </div>
     </>
