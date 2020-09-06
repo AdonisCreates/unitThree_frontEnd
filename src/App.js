@@ -1,25 +1,129 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState, useEffect } from 'react';
+import { Route, Switch } from "react-router-dom";
+import axios from "axios";
+
+import NavBar from "./components/NavBar/NavBar";
+import PlaylistList from "./components/PlaylistList/PlaylistList";
+import SignUpForm from "./components/SignUpForm/SignUpForm";
+import LogInForm from "./components/LogInForm/LogInForm";
+import LogOut from "./components/LogOut/LogOut";
 import './App.css';
 
-function App() {
+const App = () => {
+  const [state, setState] = useState({
+    email: "",
+    password: "",
+    isLoggedIn: false,
+  });
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    if (localStorage.token) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [isLoggedIn]);
+
+  const handleLogOut = () => {
+    setState({
+      email: "",
+      password: "",
+      isLoggedIn: false,
+    });
+    localStorage.clear();
+  };
+
+  const handleInput = (event) => {
+    setState({ ...state, [event.target.name]: event.target.value });
+  };
+
+  const handleSignUp = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:3001/users/signup", {
+        email: state.email,
+        password: state.password,
+      });
+      console.log(response);
+      localStorage.token = response.data.token;
+      setIsLoggedIn(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleLogIn = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:3001/users/login", {
+        email: state.email,
+        password: state.password,
+      });
+      localStorage.token = response.data.token;
+      setIsLoggedIn(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div>
+        <NavBar isLoggedIn={isLoggedIn} />
+        <div className="body">
+          {/* <Switch>
+            <Route
+              path="/signup"
+              render={(props) => {
+                return (
+                  <SignUpForm
+                    isLoggedIn={isLoggedIn}
+                    handleInput={handleInput}
+                    handleSignUp={handleSignUp}
+                  />
+                );
+              }}
+            />
+            <Route
+              path="/logout"
+              render={(props) => {
+                return (
+                  <LogOut isLoggedIn={isLoggedIn} handleLogOut={handleLogOut} />
+                );
+              }}
+            />
+            <Route
+              path="/login"
+              render={(props) => {
+                return (
+                  <LogInForm
+                    isLoggedIn={isLoggedIn}
+                    handleInput={handleInput}
+                    handleLogIn={handleLogIn}
+                  />
+                );
+              }}
+            />
+            <Route
+              path="/"
+              render={() => {
+                return <PlaylistList isLoggedIn={isLoggedIn} />;
+              }}
+            />
+          </Switch> */}
+        </div>
+      </div>
+      <div className="App">
+        <header className="App-header">
+          <h1>Hello World!</h1>
+          <p>
+            Welcome to our Project #3
+          </p>
+        </header>
+      </div>
+    </>
   );
 }
 
