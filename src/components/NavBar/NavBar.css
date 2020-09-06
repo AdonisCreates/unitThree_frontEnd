@@ -1,6 +1,8 @@
 nav {
-    background: green;
+    /* background: green; */
+    /* background-image: linear-gradient(to top left, red, yellow); */
     padding: 0 2% 0 2%;
+    width: 100%;
   }
   
   nav a {
@@ -20,10 +22,6 @@ nav {
     justify-content: space-around;
     list-style-type: none;
     margin: 20px;
-  }
-  
-  nav ul {
-    margin: 0px;
   }
   
   h1 {

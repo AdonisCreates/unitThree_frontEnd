@@ -28,7 +28,7 @@ function NavBar(props) {
 
     return (
         <>
-            <h1>Project 3</h1>
+            <h1>Spotify</h1>
             <nav>
                 <ul>{navBarItems}</ul>
             </nav>

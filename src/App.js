@@ -70,8 +70,10 @@ const App = () => {
 
   return (
     <>
-      <div>
+      <div className="App">
+      <header className="App-header">
         <NavBar isLoggedIn={isLoggedIn} />
+      </header>
         <div className="body">
           {/* <Switch>
             <Route
@@ -113,15 +115,11 @@ const App = () => {
               }}
             />
           </Switch> */}
-        </div>
-      </div>
-      <div className="App">
-        <header className="App-header">
           <h1>Hello World!</h1>
           <p>
             Welcome to our Project #3
           </p>
-        </header>
+        </div>
       </div>
     </>
   );
