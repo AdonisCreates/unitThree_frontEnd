@@ -35,6 +35,7 @@ body {
   background-color: dodgerblue;
   color: seashell;
   top: 80px;
+  bottom: 60px;
   min-height: 100vh;
 }
 
