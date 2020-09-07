@@ -1,13 +1,18 @@
 nav {
-    /* background: green; */
-    /* background-image: linear-gradient(to top left, red, yellow); */
-    padding: 0 2% 0 2%;
-    width: 100%;
+    background-color: #060505;
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    padding: 20px 0 0 32px;
+    overflow: hidden;
   }
   
   nav a {
     text-decoration: none;
-    color: black;
+    color: lightslategray;
     font-weight: 600;
     font-size: 20px;
   }
@@ -19,9 +24,10 @@ nav {
   
   nav ul {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
     list-style-type: none;
     margin: 20px;
+    padding: 20px;
   }
   
   h1 {

@@ -72,9 +72,9 @@ const App = () => {
   return (
     <>
       <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
+      </header> */}
         <NavBar isLoggedIn={isLoggedIn} />
-      </header>
         <div className="body">
           {/* <Switch>
             <Route
@@ -125,6 +125,9 @@ const App = () => {
             <input type="submit" name="" value="Create New Playlist"/>
           </form>
         </div>
+        <footer>
+          <p>This is the footer</p>
+        </footer>
       </div>
     </>
   );
