@@ -78,6 +78,8 @@ const App = () => {
         <NavBar isLoggedIn={isLoggedIn} />
         <header>
             <h1>Hello World!</h1>
+        </header>
+        <div className="body">
           <p>
             Welcome to our Project #3
           </p>
@@ -85,8 +87,6 @@ const App = () => {
             Name: <input type="text" name="name" />
             <input type="submit" name="" value="Create New Playlist"/>
           </form>
-          </header>
-        <div>
           {/* <Switch>
             <Route
               path="/signup"

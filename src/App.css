@@ -30,11 +30,14 @@
   color: #61dafb;
 }
 
-body {
+.body {
   /* background-color: #282c34; */
-  background-color: dodgerblue;
+  background-color: #182F34;
   color: seashell;
+  position: fixed;
   top: 80px;
+  left: 250px;
+  right: 0;
   bottom: 60px;
   min-height: 100vh;
 }
@@ -49,7 +52,7 @@ header {
   left: 250px;
   right: 0;
   height: 80px;
-  background-color: green;
+  background-color: #182F34;
 }
 
 footer {
