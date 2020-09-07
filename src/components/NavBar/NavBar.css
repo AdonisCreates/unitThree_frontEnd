@@ -15,6 +15,8 @@ nav {
     color: lightslategray;
     font-weight: 600;
     font-size: 20px;
+    display: flex;
+    flex-direction: column;
   }
   
   nav a:hover {

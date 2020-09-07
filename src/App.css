@@ -31,12 +31,24 @@
 }
 
 body {
-  background-color: #282c34;
+  /* background-color: #282c34; */
+  background-color: dodgerblue;
   color: seashell;
+  top: 80px;
+  min-height: 100vh;
 }
 
 h1 {
   text-align: center;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 250px;
+  right: 0;
+  height: 80px;
+  background-color: green;
 }
 
 footer {

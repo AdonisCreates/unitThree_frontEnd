@@ -8,6 +8,7 @@ import SignUpForm from "./components/SignUpForm/SignUpForm";
 import LogInForm from "./components/LogInForm/LogInForm";
 import LogOut from "./components/LogOut/LogOut";
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.css';
 import { queryHelpers } from '@testing-library/react';
 
 const App = () => {
@@ -75,7 +76,17 @@ const App = () => {
       {/* <header className="App-header">
       </header> */}
         <NavBar isLoggedIn={isLoggedIn} />
+        <header>
+            <h1>Hello World!</h1>
+          </header>
         <div className="body">
+          <p>
+            Welcome to our Project #3
+          </p>
+          <form action="/" method="POST">
+            Name: <input type="text" name="name" />
+            <input type="submit" name="" value="Create New Playlist"/>
+          </form>
           {/* <Switch>
             <Route
               path="/signup"
@@ -116,14 +127,6 @@ const App = () => {
               }}
             />
           </Switch> */}
-          <h1>Hello World!</h1>
-          <p>
-            Welcome to our Project #3
-          </p>
-          <form action="/" method="POST">
-            Name: <input type="text" name="name" />
-            <input type="submit" name="" value="Create New Playlist"/>
-          </form>
         </div>
         <footer>
           <p>This is the footer</p>
