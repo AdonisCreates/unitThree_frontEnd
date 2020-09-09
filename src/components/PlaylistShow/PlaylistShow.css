@@ -1,0 +1,7 @@
+* {
+    display: flex;
+    flex-flow: row;
+    margin: 0 auto;
+    justify-content: flex-start;
+    align-items: center;
+}
