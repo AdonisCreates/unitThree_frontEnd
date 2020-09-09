@@ -76,7 +76,7 @@ const App = () => {
           <p>
             Welcome to our Project #3
           </p>
-          {isLoggedIn && <form action="/" method="POST">
+          {isLoggedIn && localStorage.getItem('loggedIn') && <form action="/" method="POST">
             Name: <input type="text" name="name" />
             <input type="submit" name="" value="Create New Playlist"/>
           </form>}
