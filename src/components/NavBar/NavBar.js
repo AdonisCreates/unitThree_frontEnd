@@ -11,7 +11,7 @@ function NavBar(props) {
     if (props.isLoggedIn) {
         navBarItems.push(
             <li key={2}>
-                <a href="/logout">Log Out</a>
+                <a href="/" onClick={props.handleLogOut}>Log Out</a>
             </li>
         );
     } else {

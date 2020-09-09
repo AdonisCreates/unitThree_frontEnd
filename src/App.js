@@ -13,24 +13,26 @@ import { queryHelpers } from '@testing-library/react';
 
 const App = () => {
   const [state, setState] = useState({
-    isLoggedIn: false,
+
   });
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    if (localStorage.token) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, [isLoggedIn]);
+  // useEffect(() => {
+  //   if (isLoggedIn === false ) {
+  //     setIsLoggedIn(true);
+  //   } else {
+  //     setIsLoggedIn(false);
+  //   }
+  //   console.log(isLoggedIn)
+  // }, [isLoggedIn]);
 
   const handleLogOut = () => {
-    setState({
-      isLoggedIn: false,
-    });
-    localStorage.clear();
+      try {
+          setIsLoggedIn(false);
+      } catch (error) {
+          console.log(error);
+      }
   };
 
   const handleInput = (event) => {
@@ -52,7 +54,7 @@ const App = () => {
     }
   };
 
-  const handleLogIn = async (event) => {
+  const handleLogIn = () => {
     try {
       setIsLoggedIn(true);
     } catch (error) {
@@ -64,7 +66,7 @@ const App = () => {
     <div className="App">
       {/* <header className="App-header">
       </header> */}
-        <NavBar handleLogIn={handleLogIn} />
+        <NavBar handleLogIn={handleLogIn} isLoggedIn={isLoggedIn} handleLogOut={handleLogOut}/>
         <header>
             <h1>Hello World!</h1>
         </header>
