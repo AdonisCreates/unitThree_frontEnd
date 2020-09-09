@@ -22,7 +22,7 @@ function NavBar(props) {
         );
         navBarItems.push(
             <li key={4}>
-                <a href="/login">Log In</a>
+                <a href="https://backendspotify.herokuapp.com/login" onClick={props.handleLogIn}>Log In</a>
             </li>
         );
     }
