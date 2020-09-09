@@ -8,7 +8,7 @@ function NavBar(props) {
             <a href="/">All Playlists</a>
         </li>,
     ];
-    if (props.isLoggedIn) {
+    if (localStorage.getItem('loggedIn')) {
         navBarItems.push(
             <li key={2}>
                 <a href="/" onClick={props.handleLogOut}>Log Out</a>
