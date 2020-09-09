@@ -53,7 +53,7 @@ const PlaylistList = (props) => {
         return (
             <div key={i}>
                 <form onSubmit={handleSubmit} className="task-form">
-                    <h1>New Playlist Form</h1>
+                    <h1>New Track Form</h1>
                     Artist: {' '}
                     <input
                         type="text"
