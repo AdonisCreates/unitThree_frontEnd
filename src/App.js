@@ -16,7 +16,7 @@ const App = () => {
 
   });
 
-  const [isLoggedIn, setIsLoggedIn] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // useEffect(() => {
   //   if (isLoggedIn === false ) {
@@ -30,6 +30,7 @@ const App = () => {
   const handleLogOut = () => {
       try {
           setIsLoggedIn(false);
+          localStorage.removeItem('loggedIn')
       } catch (error) {
           console.log(error);
       }
@@ -56,6 +57,7 @@ const App = () => {
 
   const handleLogIn = () => {
     try {
+        localStorage.setItem('loggedIn', 'true')
       setIsLoggedIn(true);
     } catch (error) {
       console.log(error);
