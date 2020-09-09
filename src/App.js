@@ -16,7 +16,7 @@ const App = () => {
 
   });
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState();
 
   // useEffect(() => {
   //   if (isLoggedIn === false ) {
