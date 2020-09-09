@@ -64,7 +64,7 @@ const App = () => {
     <div className="App">
       {/* <header className="App-header">
       </header> */}
-        <NavBar isLoggedIn={isLoggedIn} />
+        <NavBar handleLogIn={handleLogIn} />
         <header>
             <h1>Hello World!</h1>
         </header>
