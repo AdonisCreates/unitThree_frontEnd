@@ -22,7 +22,7 @@ function NavBar(props) {
         );
         navBarItems.push(
             <li key={4}>
-                <a href="/login">Log In</a>
+                <a href="http://localhost:8888/login" handleLogIn={props.handleLogIn}>Log In</a>
             </li>
         );
     }

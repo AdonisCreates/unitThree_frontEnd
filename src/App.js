@@ -13,8 +13,6 @@ import { queryHelpers } from '@testing-library/react';
 
 const App = () => {
   const [state, setState] = useState({
-    email: "",
-    password: "",
     isLoggedIn: false,
   });
 
@@ -30,8 +28,6 @@ const App = () => {
 
   const handleLogOut = () => {
     setState({
-      email: "",
-      password: "",
       isLoggedIn: false,
     });
     localStorage.clear();
@@ -57,13 +53,7 @@ const App = () => {
   };
 
   const handleLogIn = async (event) => {
-    event.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3001/users/login", {
-        email: state.email,
-        password: state.password,
-      });
-      localStorage.token = response.data.token;
       setIsLoggedIn(true);
     } catch (error) {
       console.log(error);
@@ -71,8 +61,7 @@ const App = () => {
   };
 
   return (
-    <>
-      <div className="App">
+    <div className="App">
       {/* <header className="App-header">
       </header> */}
         <NavBar isLoggedIn={isLoggedIn} />
@@ -83,11 +72,11 @@ const App = () => {
           <p>
             Welcome to our Project #3
           </p>
-          <form action="/" method="POST">
+          {isLoggedIn && <form action="/" method="POST">
             Name: <input type="text" name="name" />
             <input type="submit" name="" value="Create New Playlist"/>
-          </form>
-          {/* <Switch>
+          </form>}
+          <Switch>
             <Route
               path="/signup"
               render={(props) => {
@@ -108,31 +97,29 @@ const App = () => {
                 );
               }}
             />
+            {/*<Route*/}
+            {/*  path="/login"*/}
+            {/*  render={(props) => {*/}
+            {/*    return (*/}
+            {/*      <LogInForm*/}
+            {/*        isLoggedIn={isLoggedIn}*/}
+            {/*        handleLogIn={handleLogIn}*/}
+            {/*      />*/}
+            {/*    );*/}
+            {/*  }}*/}
+            {/*/>*/}
             <Route
-              path="/login"
-              render={(props) => {
-                return (
-                  <LogInForm
-                    isLoggedIn={isLoggedIn}
-                    handleInput={handleInput}
-                    handleLogIn={handleLogIn}
-                  />
-                );
-              }}
-            />
-            <Route
-              path="/"
+              path="/playist"
               render={() => {
                 return <PlaylistList isLoggedIn={isLoggedIn} />;
               }}
             />
-          </Switch> */}
+          </Switch>
         </div>
         <footer>
           <p>This is the footer</p>
         </footer>
       </div>
-    </>
   );
 }
 
