@@ -16,7 +16,7 @@ const App = () => {
 
   });
 
-  const [isLoggedIn, setIsLoggedIn] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // useEffect(() => {
   //   if (isLoggedIn === false ) {
@@ -30,6 +30,7 @@ const App = () => {
   const handleLogOut = () => {
       try {
           setIsLoggedIn(false);
+          localStorage.removeItem('loggedIn')
       } catch (error) {
           console.log(error);
       }
@@ -56,6 +57,7 @@ const App = () => {
 
   const handleLogIn = () => {
     try {
+        localStorage.setItem('loggedIn', 'true')
       setIsLoggedIn(true);
     } catch (error) {
       console.log(error);
@@ -74,7 +76,7 @@ const App = () => {
           <p>
             Welcome to our Project #3
           </p>
-          {isLoggedIn && <form action="/" method="POST">
+          {isLoggedIn && localStorage.getItem('loggedIn') && <form action="/" method="POST">
             Name: <input type="text" name="name" />
             <input type="submit" name="" value="Create New Playlist"/>
           </form>}
