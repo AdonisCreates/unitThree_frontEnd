@@ -50,6 +50,7 @@ function PlaylistShow(props) {
     <>
       <div className="search">
         <form onSubmit={handleSubmit}>
+          Song Search:
           <input
             type="text"
             id="search"
@@ -62,24 +63,24 @@ function PlaylistShow(props) {
         </form>
       </div>
       <ul>
-        {allTracks.map((track) => {
-          return (
-            <li>
-              {track.trackName}
-              {track.artists.map((artist) => {
-                return artist;
-              })}
-              {track.album.albumName}
-              {track.album.albumImg[0]}
-            </li>
-          );
-        })}
+        {searchTrack.search !== "" &&
+          allTracks.map((track) => {
+            return (
+              <li>
+                {track.trackName}
+                {track.artists.map((artist) => {
+                  return artist;
+                })}
+                {track.album.albumName}
+                {track.album.albumImg[0]}
+              </li>
+            );
+          })}
       </ul>
       {/*<div className="playlist-preview">*/}
       {/*  {props.isLoggedIn ? <h3>Artist: {artist}</h3> : ""}*/}
       {/*  {props.isLoggedIn ? <h3>Album: {album}</h3> : ""}*/}
       {/*  {props.isLoggedIn ? <h3>Song: {title}</h3> : ""}*/}
-      </div>
     </>
   );
 }
