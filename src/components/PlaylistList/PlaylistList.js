@@ -7,8 +7,9 @@ const PlaylistList = (props) => {
     const [playlists, setPlaylists] = useState([]);
 
     const [newPlaylist, updateNewPlaylist] = useState({
-        artist: '',
-        album: '',
+        artists: [''],
+        album: {albumName: '',
+        albumImg: ''},
         song: ''
     });
 

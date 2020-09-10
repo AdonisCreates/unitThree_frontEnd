@@ -1,6 +1,6 @@
 {
   "engines": {
-    "node": "14.8.0",
+    "node": "14.5.0",
     "yarn": "1.22.5"
   },
   "name": "unitthree_frontend",
@@ -13,6 +13,7 @@
     "axios": "^0.20.0",
     "bootstrap": "^4.5.2",
     "express": "^4.17.1",
+    "node": "^14.8.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
