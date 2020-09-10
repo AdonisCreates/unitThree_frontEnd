@@ -34,9 +34,15 @@ function Home(props) {
     <div className={"mainPage"}>
       <p>Welcome to our Project #3</p>
       {localStorage.getItem("loggedIn") && (
-        <form onSubmit={props.newPlaylistSubmit}>
-          Name: <input type="text" name="name" onChange={props.handleInput} />
-          <input type="submit" name="submit" value="Create New Playlist" />
+        <form>
+          Name:{" "}
+          <input type="text" name="playlistName" onChange={props.handleInput} />
+          <input
+            type="submit"
+            name="submit"
+            value="Create New Playlist"
+            onClick={props.newPlaylistSubmit}
+          />
         </form>
       )}
       {localStorage.getItem("loggedIn") &&
