@@ -1,62 +1,53 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-function Home() {
-  const [playlist, updatePlaylist] = useState({
-    name: "",
-  });
+function Home(props) {
+  const [playlist, updatePlaylist] = useState([
+    {
+      name: "",
+      _id: "",
+      tracks: [],
+      createdAt: "",
+      updatedAt: "",
+    },
+  ]);
+
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get(
-          "https://backendspotify.herokuapp.com/playlist"
-        );
-        const data = await response.json();
-        updatePlaylist({ ...playlist, ...data });
+        await axios
+          .get("https://backendspotify.herokuapp.com/playlist", {})
+          .then(function (response) {
+            const returnedData = response.data;
+            updatePlaylist([...returnedData]);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
       } catch (e) {
         console.error(e);
       }
     })();
   }, [playlist]);
 
-  const handleInput = (event) => {
-    updatePlaylist({
-      ...playlist,
-      ...{
-        [event.target.name]: event.target.value,
-      },
-    });
-  };
-
-  const newPlaylistSubmit = (event) => {
-    event.preventDefault();
-    (async () => {
-      try {
-        await axios.post("https://backendspotify.herokuapp.com/playlist");
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  };
-
   return (
     <div className={"mainPage"}>
       <p>Welcome to our Project #3</p>
       {localStorage.getItem("loggedIn") && (
-        <form onSubmit={newPlaylistSubmit}>
-          Name: <input type="text" name="name" />
-          <input
-            type="submit"
-            name="submit"
-            value="Create New Playlist"
-            onChange={handleInput}
-          />
+        <form onSubmit={props.newPlaylistSubmit}>
+          Name: <input type="text" name="name" onChange={props.handleInput} />
+          <input type="submit" name="submit" value="Create New Playlist" />
         </form>
       )}
       {localStorage.getItem("loggedIn") &&
         playlist.length > 0 &&
         playlist.map((individual) => {
-          return <h2>{individual.name}</h2>;
+          return (
+            <>
+              <p> You have {`${playlist.length}`} playlist(s)</p>
+              <p>{individual.name}</p>
+            </>
+          );
         })}
     </div>
   );

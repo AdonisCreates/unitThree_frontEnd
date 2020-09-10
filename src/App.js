@@ -9,7 +9,18 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 
 const App = () => {
-  const [state, setState] = useState({});
+  const [state, setState] = useState({
+    playlistName: "",
+  });
+
+  const handleInput = (event) => {
+    setState({
+      ...state,
+      ...{
+        [event.target.name]: event.target.value,
+      },
+    });
+  };
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogOut = () => {
@@ -28,6 +39,24 @@ const App = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const newPlaylistSubmit = (event) => {
+    event.preventDefault();
+    (async () => {
+      console.log(state.playlistName);
+      try {
+        await axios
+          .post("https://backendspotify.herokuapp.com/playlist", {
+            name: state.playlistName,
+          })
+          .then(function (response) {
+            console.log(response);
+          });
+      } catch (error) {
+        console.log(error);
+      }
+    })();
   };
 
   return (
@@ -53,7 +82,13 @@ const App = () => {
           <Route
             path={"/"}
             render={(props) => {
-              return <Home isLoggedIn={isLoggedIn} />;
+              return (
+                <Home
+                  isLoggedIn={isLoggedIn}
+                  newPlaylistSubmit={newPlaylistSubmit}
+                  handleInput={handleInput}
+                />
+              );
             }}
           />
         </Switch>
