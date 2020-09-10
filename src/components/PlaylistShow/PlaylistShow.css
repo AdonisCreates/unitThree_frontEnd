@@ -5,3 +5,8 @@
     justify-content: flex-start;
     align-items: center;
 }
+
+.search {
+    margin-left: 25px;
+    min-width: 360px;
+}
