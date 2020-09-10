@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "./Home.css";
 
 function Home(props) {
   const [playlist, updatePlaylist] = useState([
@@ -33,6 +34,7 @@ function Home(props) {
   return (
     <div className={"mainPage"}>
       <p>Welcome to our Project #3</p>
+      <br/>
       {localStorage.getItem("loggedIn") && (
         <form onSubmit={props.newPlaylistSubmit}>
           Name: <input type="text" name="name" onChange={props.handleInput} />
