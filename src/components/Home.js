@@ -1,36 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import axios from "axios";
 import "./Home.css";
 
 function Home(props) {
-  const [playlist, updatePlaylist] = useState([
-    {
-      name: "",
-      _id: "",
-      tracks: [],
-      createdAt: "",
-      updatedAt: "",
-    },
-  ]);
-
-  useEffect(() => {
-    (async () => {
-      try {
-        await axios
-          .get("https://backendspotify.herokuapp.com/playlist", {})
-          .then(function (response) {
-            const returnedData = response.data;
-            updatePlaylist([...returnedData]);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-      } catch (e) {
-        console.error(e);
-      }
-    })();
-  }, [playlist]);
-
   return (
     <div className={"mainPage"}>
       <p>Welcome to our Project #3</p>
@@ -46,11 +18,20 @@ function Home(props) {
           />
         </form>
       )}
-      <p> You have {`${playlist.length}`} playlist(s)</p>
+      <p> You have {`${props.playlist.length}`} playlist(s)</p>
       {localStorage.getItem("loggedIn") &&
-        playlist.length > 0 &&
-        playlist.map((individual) => {
-          return <p>{individual.name}</p>;
+        props.playlist.length > 0 &&
+        props.playlist.map((individual) => {
+          props.grabPlaylist(individual);
+          return (
+            <p>
+              <a
+                href={`https://backendspotify.herokuapp.com/playlist/${individual._id}`}
+              >
+                {individual.name}
+              </a>
+            </p>
+          );
         })}
     </div>
   );
