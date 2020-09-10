@@ -70,7 +70,7 @@ const App = () => {
         handleLogOut={handleLogOut}
       />
       <header>
-        <h1>Hello World!</h1>
+        <h1>Music For Every Mood</h1>
       </header>
       <div className="body">
         <Switch>

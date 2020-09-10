@@ -41,6 +41,9 @@
   bottom: 60px;
   min-height: 100vh;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
 }
 
 h1 {
@@ -70,4 +73,14 @@ footer {
   color: gray;
   display: flex;
   justify-content: space-around;
+}
+
+.mainPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+form {
+  padding: 10px;
 }
