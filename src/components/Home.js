@@ -36,20 +36,21 @@ function Home(props) {
       <p>Welcome to our Project #3</p>
       <br/>
       {localStorage.getItem("loggedIn") && (
-        <form onSubmit={props.newPlaylistSubmit}>
+        <form>
           Name: <input type="text" name="name" onChange={props.handleInput} />
-          <input type="submit" name="submit" value="Create New Playlist" />
+          <input
+            type="submit"
+            name="submit"
+            value="Create New Playlist"
+            onClick={props.newPlaylistSubmit}
+          />
         </form>
       )}
+      <p> You have {`${playlist.length}`} playlist(s)</p>
       {localStorage.getItem("loggedIn") &&
         playlist.length > 0 &&
         playlist.map((individual) => {
-          return (
-            <>
-              <p> You have {`${playlist.length}`} playlist(s)</p>
-              <p>{individual.name}</p>
-            </>
-          );
+          return <p>{individual.name}</p>;
         })}
     </div>
   );

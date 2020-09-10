@@ -10,7 +10,7 @@ import "bootstrap/dist/css/bootstrap.css";
 
 const App = () => {
   const [state, setState] = useState({
-    playlistName: "",
+    name: "",
   });
 
   const handleInput = (event) => {
@@ -20,6 +20,7 @@ const App = () => {
         [event.target.name]: event.target.value,
       },
     });
+    console.log(state);
   };
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
@@ -44,11 +45,11 @@ const App = () => {
   const newPlaylistSubmit = (event) => {
     event.preventDefault();
     (async () => {
-      console.log(state.playlistName);
+      console.log(state.name);
       try {
         await axios
           .post("https://backendspotify.herokuapp.com/playlist", {
-            name: state.playlistName,
+            name: state.name,
           })
           .then(function (response) {
             console.log(response);
