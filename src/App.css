@@ -40,6 +40,7 @@
   right: 0;
   bottom: 60px;
   min-height: 100vh;
+  padding: 10px;
 }
 
 h1 {
@@ -53,6 +54,8 @@ header {
   right: 0;
   height: 80px;
   background-color: #182F34;
+  display: flex;
+  justify-content: center;
 }
 
 footer {
@@ -65,4 +68,6 @@ footer {
   left: 0;
   overflow: hidden;
   color: gray;
+  display: flex;
+  justify-content: space-around;
 }
