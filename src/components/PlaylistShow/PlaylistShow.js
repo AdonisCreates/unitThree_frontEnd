@@ -1,16 +1,40 @@
 import React, { useEffect, useState } from "react";
 import "./PlaylistShow.css";
+import axios from "axios";
 
-function PlaylistShow(props) {
+const PlaylistShow = (props) => {
   const [allTracks, updateAllTracks] = useState({
     artists: [""],
     album: { albumName: "", albumImg: "" },
     trackName: "",
   });
 
+  const [currentPlaylist, updateCurrentPlaylist] = useState({});
+
   const [searchTrack, updateSearchTrack] = useState({
     search: "",
   });
+
+  useEffect(() => {
+    (async () => {
+      try {
+        await axios
+          .get(
+            `https://backendspotify.herokuapp.com/playlist/${props.selectedPlaylist._id}`,
+            {}
+          )
+          .then(function (response) {
+            const returnedData = response.data;
+            updateCurrentPlaylist(returnedData);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+  }, [currentPlaylist]);
 
   const handleChange = (event) => {
     updateSearchTrack({
@@ -18,6 +42,7 @@ function PlaylistShow(props) {
       ...{ [event.target.id]: event.target.value },
     });
   };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -48,6 +73,7 @@ function PlaylistShow(props) {
 
   return (
     <>
+      <div className={"selectedPlaylist"}></div>
       <div className="search">
         <form onSubmit={handleSubmit}>
           Song Search:
@@ -83,6 +109,6 @@ function PlaylistShow(props) {
       {/*  {props.isLoggedIn ? <h3>Song: {title}</h3> : ""}*/}
     </>
   );
-}
+};
 
 export default PlaylistShow;
