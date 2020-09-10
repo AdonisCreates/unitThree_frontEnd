@@ -42,6 +42,7 @@ function Home() {
   return (
     <div className={"mainPage"}>
       <p>Welcome to our Project #3</p>
+      <br/>
       {localStorage.getItem("loggedIn") && (
         <form onSubmit={newPlaylistSubmit}>
           Name: <input type="text" name="name" />
