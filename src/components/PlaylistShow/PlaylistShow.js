@@ -75,10 +75,10 @@ function PlaylistShow(props) {
           );
         })}
       </ul>
-      <div className="playlist-preview">
-        {props.isLoggedIn ? <h3>Artist: {artist}</h3> : ""}
-        {props.isLoggedIn ? <h3>Album: {album}</h3> : ""}
-        {props.isLoggedIn ? <h3>Song: {title}</h3> : ""}
+      {/*<div className="playlist-preview">*/}
+      {/*  {props.isLoggedIn ? <h3>Artist: {artist}</h3> : ""}*/}
+      {/*  {props.isLoggedIn ? <h3>Album: {album}</h3> : ""}*/}
+      {/*  {props.isLoggedIn ? <h3>Song: {title}</h3> : ""}*/}
       </div>
     </>
   );
