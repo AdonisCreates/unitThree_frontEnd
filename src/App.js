@@ -13,6 +13,44 @@ const App = () => {
     name: "",
   });
 
+  const [selectedPlaylist, updateSelectedPlaylist] = useState({});
+
+  const [playlist, updatePlaylist] = useState([
+    {
+      name: "",
+      _id: "",
+      tracks: [],
+      createdAt: "",
+      updatedAt: "",
+    },
+  ]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        await axios
+          .get("https://backendspotify.herokuapp.com/playlist", {})
+          .then(function (response) {
+            const returnedData = response.data;
+            updatePlaylist([...returnedData]);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+      } catch (e) {
+        console.error(e);
+      }
+    })();
+  }, [playlist]);
+
+  const grabPlaylist = (specific) => {
+    try {
+      updateSelectedPlaylist({ ...selectedPlaylist, specific });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const handleInput = (event) => {
     setState({
       ...state,
@@ -45,7 +83,6 @@ const App = () => {
   const newPlaylistSubmit = (event) => {
     event.preventDefault();
     (async () => {
-      console.log(state.name);
       try {
         await axios
           .post("https://backendspotify.herokuapp.com/playlist", {
@@ -75,9 +112,14 @@ const App = () => {
       <div className="body">
         <Switch>
           <Route
-            path={"/playist"}
+            path={"/playist/:id"}
             render={(props) => {
-              return <PlaylistShow isLoggedIn={isLoggedIn} />;
+              return (
+                <PlaylistShow
+                  selectedPlaylist={selectedPlaylist}
+                  isLoggedIn={isLoggedIn}
+                />
+              );
             }}
           />
           <Route
@@ -85,9 +127,11 @@ const App = () => {
             render={(props) => {
               return (
                 <Home
+                  grabPlaylist={grabPlaylist}
                   isLoggedIn={isLoggedIn}
                   newPlaylistSubmit={newPlaylistSubmit}
                   handleInput={handleInput}
+                  playlist={playlist}
                 />
               );
             }}
