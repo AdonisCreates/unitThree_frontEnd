@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import axios from "axios";
 
 import NavBar from "./components/NavBar/NavBar";
-import PlaylistList from "./components/PlaylistList/PlaylistList";
+import PlaylistShow from "./components/PlaylistShow/PlaylistShow";
 import SignUpForm from "./components/SignUpForm/SignUpForm";
 import LogInForm from "./components/LogInForm/LogInForm";
 import LogOut from "./components/LogOut/LogOut";
@@ -17,15 +17,6 @@ const App = () => {
   });
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-  // useEffect(() => {
-  //   if (isLoggedIn === false ) {
-  //     setIsLoggedIn(true);
-  //   } else {
-  //     setIsLoggedIn(false);
-  //   }
-  //   console.log(isLoggedIn)
-  // }, [isLoggedIn]);
 
   const handleLogOut = () => {
       try {
@@ -43,10 +34,7 @@ const App = () => {
   const handleSignUp = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("http://localhost:3001/users/signup", {
-        email: state.email,
-        password: state.password,
-      });
+      const response = await axios.get("https://www.spotify.com/signup/")
       console.log(response);
       localStorage.token = response.data.token;
       setIsLoggedIn(true);
@@ -82,40 +70,9 @@ const App = () => {
           </form>}
           <Switch>
             <Route
-              path="/signup"
-              render={(props) => {
-                return (
-                  <SignUpForm
-                    isLoggedIn={isLoggedIn}
-                    handleInput={handleInput}
-                    handleSignUp={handleSignUp}
-                  />
-                );
-              }}
-            />
-            <Route
-              path="/logout"
-              render={(props) => {
-                return (
-                  <LogOut isLoggedIn={isLoggedIn} handleLogOut={handleLogOut} />
-                );
-              }}
-            />
-            {/*<Route*/}
-            {/*  path="/login"*/}
-            {/*  render={(props) => {*/}
-            {/*    return (*/}
-            {/*      <LogInForm*/}
-            {/*        isLoggedIn={isLoggedIn}*/}
-            {/*        handleLogIn={handleLogIn}*/}
-            {/*      />*/}
-            {/*    );*/}
-            {/*  }}*/}
-            {/*/>*/}
-            <Route
               path="/playist"
               render={() => {
-                return <PlaylistList isLoggedIn={isLoggedIn} />;
+                return <PlaylistShow isLoggedIn={isLoggedIn} />;
               }}
             />
           </Switch>

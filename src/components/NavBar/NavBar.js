@@ -17,7 +17,7 @@ function NavBar(props) {
     } else {
         navBarItems.push(
             <li key={3}>
-                <a href="/signup">Sign Up</a>
+                <a href="https://www.spotify.com/signup/">Sign Up</a>
             </li>
         );
         navBarItems.push(
