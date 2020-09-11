@@ -23,6 +23,14 @@ const App = () => {
     },
   ]);
 
+  const grabPlaylist = (specific) => {
+    try {
+      updateSelectedPlaylist({ ...selectedPlaylist, specific });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   useEffect(() => {
     (async () => {
       try {
@@ -41,14 +49,6 @@ const App = () => {
       }
     })();
   });
-
-  const grabPlaylist = (specific) => {
-    try {
-      updateSelectedPlaylist({ ...selectedPlaylist, specific });
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   const handleInput = (event) => {
     setState({
@@ -112,11 +112,12 @@ const App = () => {
       <div className="body">
         <Switch>
           <Route
-            path={"/playist/:id"}
+            path={"/:id"}
             render={(props) => {
+              console.log(props);
               return (
                 <PlaylistShow
-                  selectedPlaylist={selectedPlaylist}
+                  selectedPlaylist={props.id}
                   isLoggedIn={isLoggedIn}
                 />
               );

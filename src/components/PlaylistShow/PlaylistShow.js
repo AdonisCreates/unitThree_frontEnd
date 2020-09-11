@@ -16,11 +16,12 @@ const PlaylistShow = (props) => {
   });
 
   useEffect(() => {
+    console.log(props.selectedPlaylist);
     (async () => {
       try {
         await axios
           .get(
-            `https://backendspotify.herokuapp.com/playlist/${props.selectedPlaylist._id}`,
+            `https://backendspotify.herokuapp.com/playlist/${props.selectedPlaylist}`,
             {}
           )
           .then(function (response) {
@@ -73,7 +74,9 @@ const PlaylistShow = (props) => {
 
   return (
     <>
-      <div className={"selectedPlaylist"}></div>
+      <div className={"selectedPlaylist"}>
+        <h4>{props.selectedPlaylist}</h4>
+      </div>
       <div className="search">
         <form onSubmit={handleSubmit}>
           Song Search:
