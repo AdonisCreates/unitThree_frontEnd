@@ -1,0 +1,38 @@
+nav {
+    background-color: #060505;
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    padding: 24px 24px 0 24px;
+    overflow: hidden;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: lightslategray;
+    font-weight: 600;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  nav a:hover {
+    color: white;
+    font-weight: 800;
+  }
+  
+  nav ul {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    margin: 20px;
+    padding: 20px;
+  }
+  
+  h1 {
+    text-align: left;
+    margin: 20px 0px 20px 10px;
+  }

@@ -1,0 +1,28 @@
+* {
+    display: flex;
+    flex-flow: row;
+    margin: 0 auto;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.search {
+    margin-left: 10px;
+    min-width: 360px;
+}
+
+.search-btn {
+    padding: 2px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+.edit {
+    margin-left: 10px;
+}
+
+.edit-btn {
+    padding: 2px;
+    margin: 10px;
+    border-radius: 10px;
+}
