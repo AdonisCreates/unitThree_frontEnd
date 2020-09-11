@@ -20,18 +20,17 @@ const App = () => {
       name: "",
       _id: "",
       tracks: [],
-      createdAt: "",
-      updatedAt: "",
     },
   ]);
 
-  const showPlaylist = () => {
+  useEffect(() => {
     (async () => {
       try {
         await axios
           .get("https://backendspotify.herokuapp.com/playlist", {})
           .then(function (response) {
             const returnedData = response.data;
+            console.log(returnedData);
             updatePlaylist([...returnedData]);
           })
           .catch(function (error) {
@@ -41,7 +40,7 @@ const App = () => {
         console.error(e);
       }
     })();
-  };
+  });
 
   const grabPlaylist = (specific) => {
     try {
@@ -60,6 +59,7 @@ const App = () => {
     });
     console.log(state);
   };
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogOut = () => {
@@ -91,7 +91,6 @@ const App = () => {
           .then(function (response) {
             console.log(response);
           });
-        showPlaylist();
       } catch (error) {
         console.log(error);
       }
@@ -128,7 +127,6 @@ const App = () => {
             render={(props) => {
               return (
                 <Home
-                  grabPlaylist={grabPlaylist}
                   isLoggedIn={isLoggedIn}
                   newPlaylistSubmit={newPlaylistSubmit}
                   handleInput={handleInput}

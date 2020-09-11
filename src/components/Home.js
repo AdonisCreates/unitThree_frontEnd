@@ -22,7 +22,6 @@ function Home(props) {
       {localStorage.getItem("loggedIn") &&
         props.playlist.length > 0 &&
         props.playlist.map((individual) => {
-          props.grabPlaylist(individual);
           return (
             <p>
               <a href={`/${individual._id}`}>{individual.name}</a>
