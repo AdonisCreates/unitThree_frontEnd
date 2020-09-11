@@ -18,7 +18,6 @@ function Home(props) {
           />
         </form>
       )}
-            {/* EDIT FORM
             {localStorage.getItem("loggedIn") && (
         <form>
           Edit: <input type="text" name="name" onChange={props.handleInput} />
@@ -29,7 +28,7 @@ function Home(props) {
             onClick={props.updatedPlaylist}
           />
         </form>
-      )} */}
+      )}
       <p> You have {`${props.playlist.length}`} playlist(s)</p>
       {localStorage.getItem("loggedIn") &&
         props.playlist.length > 0 &&
