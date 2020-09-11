@@ -38,7 +38,7 @@ const App = () => {
           .get("https://backendspotify.herokuapp.com/playlist", {})
           .then(function (response) {
             const returnedData = response.data;
-            console.log(returnedData);
+            // console.log(returnedData);
             updatePlaylist([...returnedData]);
           })
           .catch(function (error) {
@@ -114,7 +114,7 @@ const App = () => {
           <Route
             path={"/:id"}
             render={(props) => {
-              console.log(props);
+              // console.log(props);
               return (
                 <PlaylistShow
                   selectedPlaylist={props.id}
