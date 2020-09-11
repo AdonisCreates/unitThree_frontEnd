@@ -3,6 +3,16 @@
     justify-content: space-around;
 }
 
+.edit {
+    margin: 10px;
+}
+
+.edit-btn {
+    font-weight: bold;
+    padding: 2px;
+    margin: 10px;
+}
+
 .name {
     margin: 10px;
 }
