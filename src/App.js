@@ -3,17 +3,15 @@ import { Route, Switch } from "react-router-dom";
 import axios from "axios";
 
 import NavBar from "./components/NavBar/NavBar";
-import PlaylistShow from "./components/PlaylistShow/PlaylistShow";
 import Home from "./components/Home";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
+import PlaylistShow from "./components/PlaylistShow/PlaylistShow";
 
 const App = () => {
   const [state, setState] = useState({
     name: "",
   });
-
-  const [selectedPlaylist, updateSelectedPlaylist] = useState({});
 
   const [playlist, updatePlaylist] = useState([
     {
@@ -22,7 +20,7 @@ const App = () => {
       tracks: [],
     },
   ]);
-
+  const [selectedPlaylist, updateSelectedPlaylist] = useState({});
   const grabPlaylist = (specific) => {
     try {
       updateSelectedPlaylist({ ...selectedPlaylist, specific });
@@ -111,18 +109,18 @@ const App = () => {
       </header>
       <div className="body">
         <Switch>
-          <Route
-            path={"/:id"}
-            render={(props) => {
-              // console.log(props);
-              return (
-                <PlaylistShow
-                  selectedPlaylist={props.id}
-                  isLoggedIn={isLoggedIn}
-                />
-              );
-            }}
-          />
+          {/*<Route*/}
+          {/*  path={"/:id"}*/}
+          {/*  render={(props) => {*/}
+          {/*    // console.log(props);*/}
+          {/*    return (*/}
+          {/*      <PlaylistShow*/}
+          {/*        selectedPlaylist={props.id}*/}
+          {/*        isLoggedIn={isLoggedIn}*/}
+          {/*      />*/}
+          {/*    );*/}
+          {/*  }}*/}
+          {/*/>*/}
           <Route
             path={"/"}
             render={(props) => {
@@ -134,6 +132,13 @@ const App = () => {
                   playlist={playlist}
                 />
               );
+            }}
+          />
+          <Route
+            path={"/:id"}
+            render={(props) => {
+              console.log(props);
+              return <PlaylistShow selectedPlaylist={selectedPlaylist} />;
             }}
           />
         </Switch>

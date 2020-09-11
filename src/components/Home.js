@@ -1,42 +1,37 @@
 // import React from "react";
 import React, { useEffect, useState } from "react";
+import { Route, Switch } from "react-router-dom";
 import axios from "axios";
 import "./Home.css";
+import PlaylistShow from "./PlaylistShow/PlaylistShow";
 
 function Home(props) {
-  const [selectedPlaylist, updateSelectedPlaylist] = useState({});
-  const grabPlaylist = (specific) => {
+  const handleDelete = async (event) => {
+    event.preventDefault();
+    const sel = event.target.id;
     try {
-      updateSelectedPlaylist({ ...selectedPlaylist, specific });
-    } catch (err) {
-      console.log(err);
+      await axios
+        .delete(`https://backendspotify.herokuapp.com/playlist/${sel}`, {})
+        .then((response) => {
+          console.log(response);
+        });
+    } catch (e) {
+      console.error(e);
     }
   };
-
-  // const [currentPlaylist, updateCurrentPlaylist] = useState({});
-
-  const handleDelete = async event => {
-		event.preventDefault();
-		try {
-			const response = await fetch(`https://backendspotify.herokuapp.com//home/${selectedPlaylist.id}`, {
-				method: 'DELETE',
-				headers: {
-					'Content-Type': 'application/json'
-				}
-			});
-			await updateSelectedPlaylist({});
-		} catch (e) {
-			console.error(e);
-		}
-	};
-
   return (
     <div className={"mainPage"}>
       <p>Enjoy your experience</p>
       <br />
       {localStorage.getItem("loggedIn") && (
         <form>
-          Name: <input className="name" type="text" name="name" onChange={props.handleInput} />
+          Name:{" "}
+          <input
+            className="name"
+            type="text"
+            name="name"
+            onChange={props.handleInput}
+          />
           <input
             className="submit"
             type="submit"
@@ -46,18 +41,24 @@ function Home(props) {
           />
         </form>
       )}
-            {localStorage.getItem("loggedIn") && (
-        <form>
-          Edit: <input className="edit" type="text" name="name" onChange={props.handleInput} />
-          <input
-            className="edit-btn"
-            type="submit"
-            name="submit"
-            value="Edit Playlist"
-            onClick={props.updatedPlaylist}
-          />
-        </form>
-      )}
+      {/*{localStorage.getItem("loggedIn") && (*/}
+      {/*  <form>*/}
+      {/*    Edit:{" "}*/}
+      {/*    <input*/}
+      {/*      className="edit"*/}
+      {/*      type="text"*/}
+      {/*      name="name"*/}
+      {/*      onChange={props.handleInput}*/}
+      {/*    />*/}
+      {/*    <input*/}
+      {/*      className="edit-btn"*/}
+      {/*      type="submit"*/}
+      {/*      name="submit"*/}
+      {/*      value="Edit Playlist"*/}
+      {/*      onClick={props.updatedPlaylist}*/}
+      {/*    />*/}
+      {/*  </form>*/}
+      {/*)}*/}
       <p> You have {`${props.playlist.length}`} playlist(s)</p>
       {localStorage.getItem("loggedIn") &&
         props.playlist.length > 0 &&
@@ -65,7 +66,9 @@ function Home(props) {
           return (
             <p>
               <a href={`/${individual._id}`}>{individual.name}</a>
-              <button onClick={handleDelete}>Delete Playlist</button>
+              <button id={`${individual._id}`} onClick={handleDelete}>
+                Delete Playlist
+              </button>
             </p>
           );
         })}
