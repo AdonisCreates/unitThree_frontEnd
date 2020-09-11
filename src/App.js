@@ -139,7 +139,7 @@ const App = () => {
         </Switch>
       </div>
       <footer>
-        <p>This is the footer</p>
+        <p>Created by: Evander Santana, Alex Mackenzie and Adriel Rodriguez</p>
       </footer>
     </div>
   );
