@@ -3,7 +3,6 @@ import { Route, Switch } from "react-router-dom";
 import axios from "axios";
 
 import NavBar from "./components/NavBar/NavBar";
-import PlaylistShow from "./components/PlaylistShow/PlaylistShow";
 import Home from "./components/Home";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
@@ -13,8 +12,6 @@ const App = () => {
     name: "",
   });
 
-  const [selectedPlaylist, updateSelectedPlaylist] = useState({});
-
   const [playlist, updatePlaylist] = useState([
     {
       name: "",
@@ -22,14 +19,6 @@ const App = () => {
       tracks: [],
     },
   ]);
-
-  const grabPlaylist = (specific) => {
-    try {
-      updateSelectedPlaylist({ ...selectedPlaylist, specific });
-    } catch (err) {
-      console.log(err);
-    }
-  };
 
   useEffect(() => {
     (async () => {
@@ -111,18 +100,18 @@ const App = () => {
       </header>
       <div className="body">
         <Switch>
-          <Route
-            path={"/:id"}
-            render={(props) => {
-              console.log(props);
-              return (
-                <PlaylistShow
-                  selectedPlaylist={props.id}
-                  isLoggedIn={isLoggedIn}
-                />
-              );
-            }}
-          />
+          {/*<Route*/}
+          {/*  path={"/:id"}*/}
+          {/*  render={(props) => {*/}
+          {/*    console.log(props);*/}
+          {/*    return (*/}
+          {/*      <PlaylistShow*/}
+          {/*        selectedPlaylist={props.id}*/}
+          {/*        isLoggedIn={isLoggedIn}*/}
+          {/*      />*/}
+          {/*    );*/}
+          {/*  }}*/}
+          {/*/>*/}
           <Route
             path={"/"}
             render={(props) => {

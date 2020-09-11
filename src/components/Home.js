@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
+import { Route, Switch } from "react-router-dom";
 import axios from "axios";
 import "./Home.css";
+import PlaylistShow from "./PlaylistShow/PlaylistShow";
 
 function Home(props) {
+  const [selectedPlaylist, updateSelectedPlaylist] = useState({});
+  const grabPlaylist = (specific) => {
+    try {
+      updateSelectedPlaylist({ ...selectedPlaylist, specific });
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return (
     <div className={"mainPage"}>
       <p>Welcome to our Project #3</p>
@@ -22,12 +32,22 @@ function Home(props) {
       {localStorage.getItem("loggedIn") &&
         props.playlist.length > 0 &&
         props.playlist.map((individual) => {
+          grabPlaylist(individual);
           return (
             <p>
               <a href={`/${individual._id}`}>{individual.name}</a>
             </p>
           );
         })}
+      <Switch>
+        <Route
+          path={"/:id"}
+          render={(props) => {
+            console.log(props);
+            return <PlaylistShow selectedPlaylist={selectedPlaylist} />;
+          }}
+        />
+      </Switch>
     </div>
   );
 }
