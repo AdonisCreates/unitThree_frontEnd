@@ -81,6 +81,7 @@ const PlaylistShow = (props) => {
         <form onSubmit={handleSubmit}>
           Song Search:
           <input
+            className="search"
             type="text"
             id="search"
             name="search"
@@ -88,8 +89,20 @@ const PlaylistShow = (props) => {
             placeholder="Search"
             onChange={handleChange}
           ></input>
-          <input value="Search" type="submit" />
+          <input className="search-btn" value="Search" type="submit" />
         </form>
+        {localStorage.getItem("loggedIn") && (
+        <form>
+          Edit: <input className="edit" type="text" name="name" onChange={props.handleInput} />
+          <input
+            className="edit-btn"
+            type="submit"
+            name="submit"
+            value="Edit Playlist"
+            onClick={props.updatedPlaylist}
+          />
+        </form>
+      )}
       </div>
       <ul>
         {searchTrack.search !== "" &&

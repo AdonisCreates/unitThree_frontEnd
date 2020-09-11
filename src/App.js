@@ -6,6 +6,7 @@ import NavBar from "./components/NavBar/NavBar";
 import Home from "./components/Home";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
+import PlaylistShow from "./components/PlaylistShow/PlaylistShow";
 
 const App = () => {
   const [state, setState] = useState({
@@ -19,6 +20,14 @@ const App = () => {
       tracks: [],
     },
   ]);
+  const [selectedPlaylist, updateSelectedPlaylist] = useState({});
+  const grabPlaylist = (specific) => {
+    try {
+      updateSelectedPlaylist({ ...selectedPlaylist, specific });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
     (async () => {
@@ -27,7 +36,7 @@ const App = () => {
           .get("https://backendspotify.herokuapp.com/playlist", {})
           .then(function (response) {
             const returnedData = response.data;
-            console.log(returnedData);
+            // console.log(returnedData);
             updatePlaylist([...returnedData]);
           })
           .catch(function (error) {
@@ -103,7 +112,7 @@ const App = () => {
           {/*<Route*/}
           {/*  path={"/:id"}*/}
           {/*  render={(props) => {*/}
-          {/*    console.log(props);*/}
+          {/*    // console.log(props);*/}
           {/*    return (*/}
           {/*      <PlaylistShow*/}
           {/*        selectedPlaylist={props.id}*/}
@@ -125,10 +134,17 @@ const App = () => {
               );
             }}
           />
+          <Route
+            path={"/:id"}
+            render={(props) => {
+              console.log(props);
+              return <PlaylistShow selectedPlaylist={selectedPlaylist} />;
+            }}
+          />
         </Switch>
       </div>
       <footer>
-        <p>This is the footer</p>
+        <p>Created by: Evander Santana, Alex Mackenzie and Adriel Rodriguez</p>
       </footer>
     </div>
   );

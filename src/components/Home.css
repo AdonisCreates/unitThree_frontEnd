@@ -2,3 +2,38 @@
     display: flex;
     justify-content: space-around;
 }
+
+.edit {
+    margin: 10px;
+}
+
+.edit-btn {
+    font-weight: bold;
+    padding: 2px;
+    margin: 10px;
+}
+
+.name {
+    margin: 10px;
+}
+
+.submit {
+    background-color: green;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 2px;
+    margin: 10px;
+}
+
+button {
+    background-color: red;
+    font-weight: bold;
+    border-radius: 10px;
+    padding: 2px;
+    margin: 10px;
+}
+
+a {
+    font-weight: bold;
+    text-decoration: underline;
+}
