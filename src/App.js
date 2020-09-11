@@ -20,10 +20,16 @@ const App = () => {
       name: "",
       _id: "",
       tracks: [],
-      createdAt: "",
-      updatedAt: "",
     },
   ]);
+
+  const grabPlaylist = (specific) => {
+    try {
+      updateSelectedPlaylist({ ...selectedPlaylist, specific });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
     (async () => {
@@ -32,6 +38,7 @@ const App = () => {
           .get("https://backendspotify.herokuapp.com/playlist", {})
           .then(function (response) {
             const returnedData = response.data;
+            console.log(returnedData);
             updatePlaylist([...returnedData]);
           })
           .catch(function (error) {
@@ -41,15 +48,7 @@ const App = () => {
         console.error(e);
       }
     })();
-  }, [playlist]);
-
-  const grabPlaylist = (specific) => {
-    try {
-      updateSelectedPlaylist({ ...selectedPlaylist, specific });
-    } catch (err) {
-      console.log(err);
-    }
-  };
+  });
 
   const handleInput = (event) => {
     setState({
@@ -60,6 +59,7 @@ const App = () => {
     });
     console.log(state);
   };
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogOut = () => {
@@ -112,11 +112,12 @@ const App = () => {
       <div className="body">
         <Switch>
           <Route
-            path={"/playist/:id"}
+            path={"/:id"}
             render={(props) => {
+              console.log(props);
               return (
                 <PlaylistShow
-                  selectedPlaylist={selectedPlaylist}
+                  selectedPlaylist={props.id}
                   isLoggedIn={isLoggedIn}
                 />
               );
@@ -127,7 +128,6 @@ const App = () => {
             render={(props) => {
               return (
                 <Home
-                  grabPlaylist={grabPlaylist}
                   isLoggedIn={isLoggedIn}
                   newPlaylistSubmit={newPlaylistSubmit}
                   handleInput={handleInput}
