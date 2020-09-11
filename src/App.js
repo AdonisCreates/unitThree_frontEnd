@@ -25,7 +25,7 @@ const App = () => {
     },
   ]);
 
-  useEffect(() => {
+  const showPlaylist = () => {
     (async () => {
       try {
         await axios
@@ -41,7 +41,7 @@ const App = () => {
         console.error(e);
       }
     })();
-  }, [playlist]);
+  };
 
   const grabPlaylist = (specific) => {
     try {
@@ -91,6 +91,7 @@ const App = () => {
           .then(function (response) {
             console.log(response);
           });
+        showPlaylist();
       } catch (error) {
         console.log(error);
       }
