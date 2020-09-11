@@ -20,8 +20,6 @@ const App = () => {
       name: "",
       _id: "",
       tracks: [],
-      createdAt: "",
-      updatedAt: "",
     },
   ]);
 
@@ -32,6 +30,7 @@ const App = () => {
           .get("https://backendspotify.herokuapp.com/playlist", {})
           .then(function (response) {
             const returnedData = response.data;
+            console.log(returnedData);
             updatePlaylist([...returnedData]);
           })
           .catch(function (error) {
@@ -41,7 +40,7 @@ const App = () => {
         console.error(e);
       }
     })();
-  }, [playlist]);
+  });
 
   const grabPlaylist = (specific) => {
     try {
@@ -60,6 +59,7 @@ const App = () => {
     });
     console.log(state);
   };
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleLogOut = () => {
@@ -127,7 +127,6 @@ const App = () => {
             render={(props) => {
               return (
                 <Home
-                  grabPlaylist={grabPlaylist}
                   isLoggedIn={isLoggedIn}
                   newPlaylistSubmit={newPlaylistSubmit}
                   handleInput={handleInput}
