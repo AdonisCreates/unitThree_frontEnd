@@ -13,17 +13,10 @@ function Home(props) {
     }
   };
 
-  // const [currentPlaylist, updateCurrentPlaylist] = useState({});
-
   const handleDelete = async event => {
 		event.preventDefault();
 		try {
-			const response = await fetch(`https://backendspotify.herokuapp.com//home/${selectedPlaylist.id}`, {
-				method: 'DELETE',
-				headers: {
-					'Content-Type': 'application/json'
-				}
-			});
+			await axios.delete(`https://backendspotify.herokuapp.com/home/${selectedPlaylist.id}`);
 			await updateSelectedPlaylist({});
 		} catch (e) {
 			console.error(e);
@@ -65,7 +58,8 @@ function Home(props) {
           return (
             <p>
               <a href={`/${individual._id}`}>{individual.name}</a>
-              <button onClick={handleDelete}>Delete Playlist</button>
+              <button id={`${individual._id}`}>Delete Playlist</button>
+              {/* <button onClick={handleDelete}>Delete Playlist</button> */}
             </p>
           );
         })}
