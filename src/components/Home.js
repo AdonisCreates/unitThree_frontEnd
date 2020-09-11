@@ -32,7 +32,7 @@ function Home(props) {
 
   return (
     <div className={"mainPage"}>
-      <p>Welcome to our Project #3</p>
+      <p>Enjoy your experience</p>
       <br />
       {localStorage.getItem("loggedIn") && (
         <form>
